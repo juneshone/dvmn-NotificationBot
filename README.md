@@ -2,6 +2,8 @@
 
 Получение уведомлений о проверенных задачах и отправка сообщений о статусе задачи в Telegram. 
 
+[NotificationBot](https://github.com/juneshone/dvmn-NotificationBot/blob/main/bot.png)
+
 ## Как установить
 
 Python должен быть уже установлен. Склонируйте репозиторий и создайте виртуальную среду командой:
