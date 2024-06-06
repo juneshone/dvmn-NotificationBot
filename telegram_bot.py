@@ -10,8 +10,6 @@ from telegram.ext import Updater, CommandHandler, CallbackContext, \
 
 
 logger = logging.getLogger('telegram_bot')
-env = Env()
-env.read_env()
 
 
 def start(update: Update, context: CallbackContext) -> None:
@@ -95,4 +93,6 @@ if __name__ == '__main__':
         level=logging.INFO
     )
     logger.setLevel(logging.DEBUG)
+    env = Env()
+    env.read_env()
     handle()
