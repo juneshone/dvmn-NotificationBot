@@ -2,7 +2,7 @@
 
 Получение уведомлений о проверенных задачах и отправка сообщений о статусе задачи в Telegram. 
 
-![NotificationBot](https://github.com/juneshone/dvmn-NotificationBot/blob/main/bot.png)
+![NotificationBot](https://github.com/juneshone/dvmn-NotificationBot/blob/main/bot_tg.png)
 
 ## Как установить
 
@@ -34,6 +34,7 @@ _Переменные окружения проекта:_
 
 `TELEGRAM_BOT_TOKEN` — токен доступа к Telegram-боту. Чтобы сгенерировать токен, вам нужно поговорить с `@BotFather` и выполнить несколько простых шагов описанных [здесь](https://core.telegram.org/bots#6-botfather).
 
+`CHAT_ID` — идентификатор Telegram-чата. Чтобы получить свой `chat_id`, напишите в Telegram специальному боту: [@userinfobot](https://telegram.me/userinfobot).
 ## Как запустить
 
 Убедитесь, что в терминале находитесь в директории кода и запустите бота, используя команду:
