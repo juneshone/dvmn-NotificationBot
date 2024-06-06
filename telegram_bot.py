@@ -9,11 +9,7 @@ from telegram.ext import Updater, CommandHandler, CallbackContext, \
     CallbackQueryHandler
 
 
-logging.basicConfig(
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    level=logging.INFO
-)
-
+logger = logging.getLogger('telegram_bot')
 env = Env()
 env.read_env()
 
@@ -94,4 +90,9 @@ def handle():
 
 
 if __name__ == '__main__':
+    logging.basicConfig(
+        format='%(asctime)s - %(funcName)s -  %(name)s - %(levelname)s - %(message)s',
+        level=logging.INFO
+    )
+    logger.setLevel(logging.DEBUG)
     handle()
