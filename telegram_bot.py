@@ -54,10 +54,12 @@ def get_user_reviews(bot, chat_id, api_devman_token):
             else:
                 params['timestamp'] = user_reviews['timestamp_to_request']
         except ReadTimeout as e:
-            logger.error(f'{type(e)}:Время ожидания истекло. Повторная попытка.')
+            logger.exception(f'{type(e)}:Время ожидания истекло. Повторная попытка.')
+            continue
         except ConnectionError as e:
-            logger.error(f'{type(e)}:Проблемы соединения. Повторная попытка.')
+            logger.exception(f'{type(e)}:Проблемы соединения. Повторная попытка.')
             time.sleep(10)
+            continue
 
 
 def main():
@@ -65,7 +67,6 @@ def main():
         format='%(asctime)s - %(funcName)s -  %(name)s - %(levelname)s - %(message)s',
         level=logging.INFO
     )
-    logger.info('Started')
     logger.setLevel(logging.DEBUG)
     env = Env()
     env.read_env()
