@@ -10,6 +10,18 @@ from requests.exceptions import ReadTimeout, ConnectionError
 logger = logging.getLogger('telegram_bot')
 
 
+class TelegramLogsHandler(logging.Handler):
+
+    def __init__(self, bot, chat_id):
+        super().__init__()
+        self.chat_id = chat_id
+        self.bot = bot
+
+    def emit(self, record):
+        log_entry = self.format(record)
+        self.bot.send_message(chat_id=self.chat_id, text=log_entry)
+
+
 def get_user_reviews(bot, chat_id, api_devman_token):
     url = 'https://dvmn.org/api/long_polling/'
     headers = {'Authorization': api_devman_token}
@@ -19,7 +31,6 @@ def get_user_reviews(bot, chat_id, api_devman_token):
             response = requests.get(
                 url,
                 headers=headers,
-                timeout=60,
                 params=params
             )
             response.raise_for_status()
@@ -61,6 +72,8 @@ def main():
     api_devman_token = env.str('API_DEVMAN_TOKEN')
     bot = telegram.Bot(token=env.str('TELEGRAM_BOT_TOKEN'))
     chat_id = env.str('CHAT_ID')
+    logger.addHandler(TelegramLogsHandler(bot, chat_id))
+    logger.info('Бот запущен')
     get_user_reviews(bot, chat_id, api_devman_token)
 
 
